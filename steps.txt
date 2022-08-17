@@ -1,0 +1,47 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE public.company
+(
+    id uuid NOT NULL DEFAULT uuid_generate_v4(),
+    company_name character varying NOT NULL,
+    trading_name character varying NOT NULL,
+    document character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE IF EXISTS public.company
+    OWNER to postgres;
+
+CREATE TABLE public.company_address
+(
+    id uuid NOT NULL DEFAULT uuid_generate_v4(),
+    company_id uuid NOT NULL,
+    street_name character varying NOT NULL,
+    street_number character varying NOT NULL,
+    additional character varying NOT NULL,
+    district character varying NOT NULL,
+    city character varying NOT NULL,
+    state character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE IF EXISTS public.company_address
+    OWNER to postgres;
+
+CREATE TABLE public.company_contact
+(
+    id uuid NOT NULL DEFAULT uuid_generate_v4(),
+    company_id uuid NOT NULL,
+    prefix character varying NOT NULL,
+    contact character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE IF EXISTS public.company_contact
+    OWNER to postgres;
