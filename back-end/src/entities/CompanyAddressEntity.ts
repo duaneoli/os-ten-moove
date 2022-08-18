@@ -1,8 +1,9 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm'
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+import { CompanyEntity } from './CompanyEntity'
 
 @Entity({ name: 'company_address' })
 export class CompanyAddressEntity {
-  @PrimaryColumn({ type: 'uuid', name: 'id' })
+  @PrimaryGeneratedColumn('uuid', { name: 'id' })
   id: string
 
   @Column({ type: 'uuid', name: 'company_id' })
@@ -31,4 +32,8 @@ export class CompanyAddressEntity {
 
   @UpdateDateColumn({ type: 'timestamp without time zone', default: () => 'CURRENT_TIMESTAMP', name: 'updated_at' })
   updatedAt: string
+
+  @OneToOne(() => CompanyEntity)
+  @JoinColumn({ name: 'company_id' })
+  company: CompanyEntity
 }

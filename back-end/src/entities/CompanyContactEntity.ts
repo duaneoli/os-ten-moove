@@ -1,8 +1,9 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm'
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+import { CompanyEntity } from './CompanyEntity'
 
 @Entity({ name: 'company_contact' })
 export class CompanyContactEntity {
-  @PrimaryColumn({ type: 'uuid', name: 'id' })
+  @PrimaryGeneratedColumn('uuid', { name: 'id' })
   id: string
 
   @Column({ type: 'uuid', name: 'company_id' })
@@ -19,4 +20,8 @@ export class CompanyContactEntity {
 
   @UpdateDateColumn({ type: 'timestamp without time zone', default: () => 'CURRENT_TIMESTAMP', name: 'updated_at' })
   updatedAt: string
+
+  @ManyToOne(() => CompanyEntity, (companyEntity) => companyEntity.id, { cascade: ['insert'] })
+  @JoinColumn({ name: 'company_id' })
+  company: CompanyEntity
 }

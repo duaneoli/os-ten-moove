@@ -45,3 +45,6 @@ CREATE TABLE public.company_contact
 
 ALTER TABLE IF EXISTS public.company_contact
     OWNER to postgres;
+
+
+%%%%%Falta colocar o codigo das FKS%%%%
