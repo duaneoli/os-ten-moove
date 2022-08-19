@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Console } from 'console'
 import { ExceptionDTO } from 'src/dtos/ExceptionDTO'
 import { RejectedInputDTO } from 'src/dtos/RejectedInputDTO'
 import { ServiceResponseDTO } from 'src/dtos/ServiceResponseDTO'

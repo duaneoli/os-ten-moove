@@ -10,9 +10,9 @@ export class CompanySchema {
   static document = Joi.string()
 
   static filter = Joi.object({
-    companyName: Joi.string(),
-    tradingName: Joi.string(),
-    document: Joi.string(),
+    companyName: CompanySchema.companyName,
+    tradingName: CompanySchema.tradingName,
+    document: CompanySchema.document,
     ...GenericSchema.createdDate,
     ...GenericSchema.updatedDate,
   })
